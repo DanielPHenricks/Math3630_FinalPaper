@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{physics}
 \usepackage{tikz}
 \title{Reaction-Advection-Diffusion Models of Air Pollution}
 \author{Daniel Henricks}
@@ -74,5 +75,43 @@ This will be the mass of the particle divided by the outflow of the box:
 \begin{equation}
     \tau = \frac{m}{F_{out}+L+D}    
 \end{equation}
+
+We also can set up a mass balance differential equation. The change of the abundance of a species must be equal to the sources less the sinks:
+
+\begin{equation}
+    \frac{dm}{dt} = F_{in} + E + P - F_{out} - L - D
+\end{equation}
+
+We need to represent the sinks using some loss rate. Let's assume that the losses are proportional to the amount of the species in the box, so the losses are
+equal to $km$. (It turns out trivially that $k = \frac{1}{\tau}$). Let's also assume that the sources are independent of $m$. Then, we yield the ODE
+
+\begin{equation}
+    \frac{dm}{dt} = S - km
+\end{equation}
+
+which can be solved quite simply via separation of variables:
+
+$$
+    \frac{dm}{dt} = S - km
+$$
+
+$$
+    \implies \int_0^t \frac{dm}{S-km} = \int_0^t dt
+$$
+
+$$
+    \implies \frac{-1}{k} \ln{\abs{\frac{S-km(t)}{S-km(0)}}} = t
+$$
+
+$$
+    \implies S - km(t) = Se^{-kt} - km(0)e^{-kt}
+$$
+
+\begin{equation}
+    \implies m(t) = \frac{S}{k}(1-e^{-kt}) + m(0)e^{-kt}
+\end{equation}
+
+Finding the steady state of this equation yields $S_\infty = \frac{S}{k}$ (via taking the limit as $t \rightarrow \infty$).
+
 
 \end{document}
