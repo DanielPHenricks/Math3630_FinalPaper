@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{physics}
 \usepackage{tikz}
@@ -43,7 +44,7 @@ whereas the Lagrangian models have the observer moving along with the parcel of 
 However, executing CTMs can be computationally difficult. We will first look at a simple model for representing the concentrations of chemicals in the 
 atmosphere.
 
-\section{A Simple Model}
+\subsection{A Simple Model}
 
 The model we will first investigate is called the one-box model (Jacob, 1999).
 
@@ -83,7 +84,8 @@ We also can set up a mass balance differential equation. The change of the abund
 \end{equation}
 
 We need to represent the sinks using some loss rate. Let's assume that the losses are proportional to the amount of the species in the box, so the losses are
-equal to $km$. (It turns out trivially that $k = \frac{1}{\tau}$). Let's also assume that the sources are independent of $m$. Then, we yield the ODE
+equal to $km$. (It turns out trivially that $k = \frac{1}{\tau}$). Let's also assume that the sources are independent of $m$ and are 
+equal to some constant $S$. Then, we yield the ODE
 
 \begin{equation}
     \frac{dm}{dt} = S - km
@@ -112,6 +114,57 @@ $$
 \end{equation}
 
 Finding the steady state of this equation yields $S_\infty = \frac{S}{k}$ (via taking the limit as $t \rightarrow \infty$).
+
+This steady state assumption is reasonable because the rate of change of the mass, $\frac{dm}{dt}$, tends to be very small in
+comparison to the production rate. Because of this, we classify this steady state as a quasi steady state. 
+
+\subsection{A More Realistic Model: the Puff Model}
+
+We will now investigate a puff model; such a model describes fluid elements moving in space. We define a fluid element
+to be a volume of air in which all particles move with the same velocity. The most common application of a puff model is diffusion from a 
+smokestack, something that is essential for understanding how air pollution diffusion. We define the mass balance equation for this model
+to be 
+
+\begin{equation}
+    \frac{dX_{c}}{dt} = E + P - L - D
+\end{equation}
+
+where $X_{c}$ is the concentration of element X. Assume that the puff takes a column shape and that the height of the column is $h$.
+Also assume that there is no chemical production ($P$) and that the losses are proportional to the concentration at some rate $L = kX_{c}$. 
+We then form the mass-balance equation:
+
+\begin{equation}
+    \frac{dX_{c}}{dt} = \frac{E}{h} - kX_{c}
+\end{equation}
+This is another separable ODE which is trivial to solve. The puff model's steady states are only valid in low-wind conditions, however (Zannetti, 1985).
+Many computer systems used by the federal government to predict air pollution use variations of this model with more complicated parameters.
+
+\section{A first diffusion model}
+
+We will first review the diffusion model established by Tirabassi (1989). Analytical models such as this one use solutions to the 
+advection-diffusion equation below:
+
+\begin{equation}
+    u\frac{\partial C}{\partial x} = \frac{\partial}{\partial y} (K_y \frac{\partial C}{\partial y}) + \frac{\partial}{\partial z} (K_z \frac{\partial C}{\partial z}) + S
+\end{equation}
+
+where the parameters are:
+
+\begin{itemize}
+    \item Mean velocity ($u$)
+    \item Concentration ($C$)
+    \item Source term ($S$)
+    \item Lateral eddy exchange constant ($K_y$)
+    \item Vertical eddy exchange constant ($K_z$)
+ \end{itemize}
+ 
+
+\section{InMAP: A more computationally efficient model for finding emissions}
+
+One of the recent developments in the study of air pollution was the creation of computationally efficient models for computing the harm to human health from
+diffusion. A prevalent model that has been implemented in industry by companies such as WattTime is InMAP \url{(http://spatialmodel.com/)}. 
+InMAP is a model that evaluates pollution by simplifying typical CTMs via using an annual-average basis for its results. 
+
 
 
 \end{document}
