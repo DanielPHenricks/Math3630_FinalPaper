@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1714325590.18358 "c:/Users/mrdan/Projects/Math3630_FinalPaper/paper.tex" "paper.pdf" "paper" 1714325595.52566 0
-  "C:/Users/mrdan/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1714027151 81088 29d6fa367ac022d1b69251d68c0742e6 ""
+["pdflatex"] 1714341861.17867 "c:/Users/mrdan/Projects/Math3630_FinalPaper/paper.tex" "paper.pdf" "paper" 1714341868.5381 0
+  "C:/Users/mrdan/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1714340556 81088 29d6fa367ac022d1b69251d68c0742e6 ""
   "C:/Users/mrdan/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1710188778 11548 abc685a2d1cab845a3fbbddca6e3a191 ""
   "C:/Users/mrdan/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1710188772 24233144 138c5093728bcea633b5e604c54c27fa ""
   "C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993062508 1436 c7f957a372ef2fbe93c0982f96625e12 ""
@@ -118,6 +118,7 @@
   "C:/Users/mrdan/AppData/Local/Programs/MiKTeX/tex/latex/base/atbegshi-ltx.sty" 1705273578 3045 273c666a54e60b9f730964f431a56c1b ""
   "C:/Users/mrdan/AppData/Local/Programs/MiKTeX/tex/latex/base/atveryend-ltx.sty" 1705273579 2462 6bc53756156dbd71c1ad550d30a3b93f ""
   "C:/Users/mrdan/AppData/Local/Programs/MiKTeX/tex/latex/base/size10.clo" 1705273578 8448 dbc0dbf4156c0bb9ba01a1c685d3bad0 ""
+  "C:/Users/mrdan/AppData/Local/Programs/MiKTeX/tex/latex/booktabs/booktabs.sty" 1579093635 6253 f1cb470c9199e7110a27851508ed7a5c ""
   "C:/Users/mrdan/AppData/Local/Programs/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1623003186 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "C:/Users/mrdan/AppData/Local/Programs/MiKTeX/tex/latex/etoolbox/etoolbox.sty" 1601897756 46845 3b58f70c6e861a13d927bff09d35ecbc ""
   "C:/Users/mrdan/AppData/Local/Programs/MiKTeX/tex/latex/graphics-cfg/color.cfg" 1465894292 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
@@ -155,13 +156,16 @@
   "C:/Users/mrdan/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/mrdan/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "atmospheric_model.png" 1714025403 32043 d22516e82b3aa2310bbe84b640ccc2f4 ""
-  "c:/Users/mrdan/Projects/Math3630_FinalPaper/paper.tex" 1714325592 22639 c7d8491e067501da0fb9740ffdf7f074 ""
+  "c:/Users/mrdan/Projects/Math3630_FinalPaper/paper.tex" 1714341860 28954 a65bbb196368109ae8f3564cc802ebf7 ""
   "code.png" 1714324543 56370 1775abf1facbfa43245d510f8264065c ""
+  "health-map.png" 1714339932 272023 10e762a2577e81da46af9949745b1131 ""
   "inmap.png" 1714279926 3678276 823d184901760e489bba158e18e7120d ""
   "inmap2.png" 1714281693 747496 644c9dbc9eac3d957b07876d04e2e21e ""
-  "paper.aux" 1714325595 4025 1946af638c797146f0d7c4f35ea70094 "pdflatex"
-  "paper.out" 1714325595 2333 92d009d2add0ff19072f8a0493f4558b "pdflatex"
-  "paper.tex" 1714325592 22639 c7d8491e067501da0fb9740ffdf7f074 ""
+  "moer-map.png" 1714337989 270898 be240b21fe990a157d57b3c474d000b0 ""
+  "paper.aux" 1714341867 7259 5024f6c6074a84d6bfb73fe5e6c1ed02 "pdflatex"
+  "paper.out" 1714341867 3047 3d35048509496fb55ba1907eeeaa3098 "pdflatex"
+  "paper.tex" 1714341860 28954 a65bbb196368109ae8f3564cc802ebf7 ""
+  "prices.png" 1714336658 68382 187c6a554ed44e9da26f81ff061a027c ""
   "renewables.png" 1714325347 99159 8851bd2d5c8ff2943b8b8c2650d1d1eb ""
   "wrfchem.png" 1714274308 147235 4d38f7da9bcbe5513d288f685ca8078e ""
   (generated)
