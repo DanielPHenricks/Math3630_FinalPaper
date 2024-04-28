@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{amsmath}
@@ -120,7 +121,8 @@ comparison to the production rate. Because of this, we classify this steady stat
 
 \subsection{A More Realistic Model: the Puff Model}
 
-We will now investigate a puff model; such a model describes fluid elements moving in space. We define a fluid element
+We will now investigate a puff model; such a model describes fluid elements moving in space. Note that the puff model
+is an example of a Lagrangian model (as mentioned above). We define a fluid element
 to be a volume of air in which all particles move with the same velocity. The most common application of a puff model is diffusion from a 
 smokestack, something that is essential for understanding how air pollution diffusion. We define the mass balance equation for this model
 to be 
@@ -151,20 +153,144 @@ advection-diffusion equation below:
 where the parameters are:
 
 \begin{itemize}
-    \item Mean velocity ($u$)
+    \item Mean wind velocity ($u$)
     \item Concentration ($C$)
     \item Source term ($S$)
     \item Lateral eddy exchange constant ($K_y$)
     \item Vertical eddy exchange constant ($K_z$)
  \end{itemize}
  
+This model was further improved by Buske et. al (2012). In this paper, the initial equation was revised to break the concentration
+into a three-dimensional problem as seen below:
+
+\begin{equation}
+    u\frac{\partial c}{\partial x} + v\frac{\partial c}{\partial y} + w \frac{\partial c}{\partial z} 
+    = \frac{\partial}{\partial x} (K_x \frac{\partial c}{\partial x}) + \frac{\partial}{\partial y} (K_y \frac{\partial c}{\partial y}) + \frac{\partial}{\partial z} (K_z \frac{\partial c}{\partial z})
+\end{equation}
+
+This equation essentially states that the mean wind vector can be broken up into its components and that the suspended material must be conserved.
+We limit the domains of $x$, $y$, and $z$ to $0 < x < L_x$, $0 < y < L_y$, and $0 < z < h$, where $h$ is the height of the atmospheric boundary layer. 
+We also impose a value of zero for the eddy diffusivities at the edges of the domain. Since the solution to the three-dimensional problem can be hard to find,
+we want to find a way to transform this equation to a two-dimensional problem. To do this, we need to transform the problem to one with variables $x$ and $z$:
+
+First, we create a complete set of orthogonal basis functions in the y-direction over the y-domain. Define
+
+$$
+    Y_m(y) = cos(\lambda_m y)
+$$
+and 
+$$
+    \lambda_m = \frac{m\pi}{L_y}, m \in \mathbb{N}^{+}
+$$
+
+From doing this, we have created a way for any function $f(y)$ to be represented as some linear combination of these eigenfunctions:
+
+$$
+    f(y) = \sum_{m=0}^{\infty} c_m Y_m(y)
+$$
+
+We then plug in our unknown coefficient of two variables to get equation (4) in Buske (2012):
+
+\begin{equation}
+    f(y) = \sum_{m=0}^{\infty} c_m(x, z) Y_m(y)
+\end{equation}
+
+To find the value of this coefficient, we will first define some integrals. Let $Y_n(y)$ also be a orthogonal eigenfunction. Then we define
+
+$$
+    \int_0^{L_y} Y_m(y)Y_n(y) dy = \alpha_{mn}
+$$
+
+$$
+    \int_0^{L_y} Y_m'(y)Y_n(y) dy = \beta_{mn}
+$$
+
+$$
+    \int_0^{L_y} K_y Y_m(y)Y_n(y) dy = \gamma_{mn}
+$$
+
+$$
+    \int_0^{L_y} K'_y Y'_m(y)Y_n(y) dy = \eta{mn}
+$$
+
+This will help simplify our derivation for finding the unknown constant $c_m(x, z)$.
+
+We first take the chain rule of each of the terms in the diffusion equation and plug in our new equation for the concentration:
+$$
+    \frac{\partial}{\partial x} [K_x \frac{\partial c(x, y, z)}{\partial x}] = [\frac{\partial}{\partial x} (K_x \frac{\partial c(x, z)}{\partial x}) + K_x \frac{\partial^2 c(x, z)}{\partial x^2}]Y_m(y)
+$$
+
+The same process is done for the y-derivative, yielding
+
+$$
+    K_y' c_m(x, z) Y_m'(y) + K_y \frac{\partial^2 c}{\partial y^2} c_m(x, z) \cos(\lambda_m y)
+$$
+
+The z-derivative also follows the same process, which will be omitted for brevity. To put the equations into the form specified above, we evaluate 
+the derivatives and then move over the advection terms. Doing this yields, as shown briefly above,
+
+$$
+    [\frac{\partial}{\partial x} [K_x \frac{\partial c(x, z)}{\partial x}] + \frac{\partial}{\partial z} [K_z \frac{\partial c(x, z)}{\partial z}] - u \frac{\partial c(x, z)}{\partial x} - w \frac{\partial c(x, z)}{\partial z}] Y_m(y)
+$$
+
+The rest of the terms in the equation come from the chain rule affects of the y derivative. The first term can be reorganized as
+
+$$
+    c_m(x, z) K_y' Y_m'(y)
+$$
+
+and the second term as 
+
+$$
+    c_m(x, z) K_y Y_m''(y)
+$$
+
+where 
+
+$$
+    Y_m''(y) = -\lambda_m^2 \cos(\lambda_m y) = -\lambda_m^2 Y_m(y)
+$$
+
+Substituting, we get 
+
+$$
+    -\lambda_m^2 c_m(x, z) K_y Y_m(y)
+$$
+
+We have now completed most of the tedious algebra. We then can apply the operator $\int_0^{L_y} Y_n(y) dy$ to obtain the result
+
+
+\begin{equation}
+\begin{aligned}
+    \sum_{m=0}^{\infty} \Bigg[ &\frac{\partial}{\partial x} \left( K_x \frac{\partial c(x, z)}{\partial x} \right) + \frac{\partial}{\partial z} \left( K_z \frac{\partial c(x, z)}{\partial z} \right) \\
+    &- u \frac{\partial c(x, z)}{\partial x} - w \frac{\partial c(x, z)}{\partial z}  \alpha_{mn} \\
+    &- v c_m(x, z) \beta_{mn} \\
+    &- \lambda_m^2 c_m(x, z) \gamma_{mn} \\
+    &+ c_m(x, z) \eta_{mn} \Bigg]
+\end{aligned}
+\end{equation}
+
+We now will make some assumptions to simplify this equation. In the ABL, it is common to treat the speeds $v$ and $w$ as zero, such as in Tirabassi (1989).
+We also assume that the force of advection is much more dominant than the force of diffusion in the x-direction. Mathematically, this is
+
+$$
+    u \frac{\partial c(x, z)}{\partial x} \gg \frac{\partial}{\partial x} (K_x\frac{\partial c(x, z)}{\partial x})
+$$
+
+Because of this, we can neglect the diffusion component $K_x$. We also consider that $K_y$ only depends on the z-direction.
+
+We can now rewrite equation (11) above as:
+
+\begin{equation}
+    u \frac{\partial c(x, z)}{\partial x} = \frac{\partial} {\partial z} (K_z \frac{\partial c(x, z)}{\partial z}) - \lambda_m^2 K_y c_m(x, z)
+\end{equation}
+
+\subsection{An interpretation of this result}
 
 \section{InMAP: A more computationally efficient model for finding emissions}
 
 One of the recent developments in the study of air pollution was the creation of computationally efficient models for computing the harm to human health from
 diffusion. A prevalent model that has been implemented in industry by companies such as WattTime is InMAP \url{(http://spatialmodel.com/)}. 
 InMAP is a model that evaluates pollution by simplifying typical CTMs via using an annual-average basis for its results. 
-
-
 
 \end{document}
