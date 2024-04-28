@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1714282450.92262 "c:/Users/mrdan/Projects/Math3630_FinalPaper/paper.tex" "paper.pdf" "paper" 1714282457.02774 0
+["pdflatex"] 1714325590.18358 "c:/Users/mrdan/Projects/Math3630_FinalPaper/paper.tex" "paper.pdf" "paper" 1714325595.52566 0
   "C:/Users/mrdan/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1714027151 81088 29d6fa367ac022d1b69251d68c0742e6 ""
   "C:/Users/mrdan/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1710188778 11548 abc685a2d1cab845a3fbbddca6e3a191 ""
   "C:/Users/mrdan/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1710188772 24233144 138c5093728bcea633b5e604c54c27fa ""
@@ -155,12 +155,14 @@
   "C:/Users/mrdan/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/mrdan/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "atmospheric_model.png" 1714025403 32043 d22516e82b3aa2310bbe84b640ccc2f4 ""
-  "c:/Users/mrdan/Projects/Math3630_FinalPaper/paper.tex" 1714282449 19213 d0dfc744008fade3af2db201927163a2 ""
+  "c:/Users/mrdan/Projects/Math3630_FinalPaper/paper.tex" 1714325592 22639 c7d8491e067501da0fb9740ffdf7f074 ""
+  "code.png" 1714324543 56370 1775abf1facbfa43245d510f8264065c ""
   "inmap.png" 1714279926 3678276 823d184901760e489bba158e18e7120d ""
   "inmap2.png" 1714281693 747496 644c9dbc9eac3d957b07876d04e2e21e ""
-  "paper.aux" 1714282456 2946 79861009c84ea111dcb8200d5531432b "pdflatex"
-  "paper.out" 1714282456 2108 599e60e202fc9f994c23afecd8686b15 "pdflatex"
-  "paper.tex" 1714282449 19213 d0dfc744008fade3af2db201927163a2 ""
+  "paper.aux" 1714325595 4025 1946af638c797146f0d7c4f35ea70094 "pdflatex"
+  "paper.out" 1714325595 2333 92d009d2add0ff19072f8a0493f4558b "pdflatex"
+  "paper.tex" 1714325592 22639 c7d8491e067501da0fb9740ffdf7f074 ""
+  "renewables.png" 1714325347 99159 8851bd2d5c8ff2943b8b8c2650d1d1eb ""
   "wrfchem.png" 1714274308 147235 4d38f7da9bcbe5513d288f685ca8078e ""
   (generated)
   "paper.aux"

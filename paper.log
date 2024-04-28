@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3) (preloaded format=pdflatex 2024.3.11)  28 APR 2024 00:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3) (preloaded format=pdflatex 2024.3.11)  28 APR 2024 12:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -428,6 +428,12 @@ File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 
 LaTeX Warning: Label `fig:atmospheric_box_model' multiply defined.
 
+
+LaTeX Warning: Label `fig:grid2' multiply defined.
+
+
+LaTeX Warning: Label `fig:grid2' multiply defined.
+
 )
 \openout1 = `paper.aux'.
 
@@ -483,7 +489,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {C:/Users/mrdan/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-<atmospheric_model.png, id=64, 747.54282pt x 306.39468pt>
+<atmospheric_model.png, id=72, 747.54282pt x 306.39468pt>
 File: atmospheric_model.png Graphic file (type png)
 <use atmospheric_model.png>
 Package pdftex.def Info: atmospheric_model.png  used on input line 54.
@@ -493,13 +499,13 @@ Overfull \hbox (15.41449pt too wide) in paragraph at lines 297--297
 []\OT1/cmr/bx/n/14.4 InMAP: A more com-pu-ta-tion-ally ef-fi-cient model
  []
 
-<wrfchem.png, id=105, 513.92pt x 548.0475pt>
+<wrfchem.png, id=113, 513.92pt x 548.0475pt>
 File: wrfchem.png Graphic file (type png)
 <use wrfchem.png>
 Package pdftex.def Info: wrfchem.png  used on input line 314.
 (pdftex.def)             Requested size: 103.50105pt x 110.36855pt.
 [7 <./wrfchem.png>]
-<inmap.png, id=114, 507.3354pt x 195.129pt>
+<inmap.png, id=122, 507.3354pt x 195.129pt>
 File: inmap.png Graphic file (type png)
 <use inmap.png>
 Package pdftex.def Info: inmap.png  used on input line 333.
@@ -509,17 +515,32 @@ Overfull \hbox (0.3489pt too wide) detected at line 345
 [][][][] \OT1/cmr/m/n/10 = [] \OMS/cmsy/m/n/10 ^^@ [] \OT1/cmr/m/n/10 + [] + [] \OMS/cmsy/m/n/10 ^^@ []
  []
 
-[8 <./inmap.png>]
-<inmap2.png, id=121, 897.85437pt x 364.36125pt>
+[8 <./inmap.png>] [9]
+Overfull \hbox (52.4957pt too wide) detected at line 407
+\OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 r ^^A \OT1/cmr/m/n/10 ([][]) + \OMS/cmsy/m/n/10 r ^^A \OT1/cmr/m/n/10 ([][]) + \OMS/cmsy/m/n/10 r ^^A \OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 ) + \OMS/cmsy/m/n/10 r ^^A \OT1/cmr/m/n/10 ([][]) + \OMS/cmsy/m/n/10 r ^^A \OT1/cmr/m/n/10 ([][]) + \OMS/cmsy/m/n/10 r ^^A \OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 ) + \OMS/cmsy/m/n/10 r ^^A \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[][]\OT1/cmr/m/n/10 ) + \OMS/cmsy/m/n/10 r ^^A \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[][]\OT1/cmr/m/n/10 ) + \OMS/cmsy/m/n/10 r ^^A \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]C[]\OT1/cmr/m/n/10 )
+ []
+
+<inmap2.png, id=137, 897.85437pt x 364.36125pt>
 File: inmap2.png Graphic file (type png)
 <use inmap2.png>
-Package pdftex.def Info: inmap2.png  used on input line 393.
-(pdftex.def)             Requested size: 276.00105pt x 112.00566pt.
+Package pdftex.def Info: inmap2.png  used on input line 428.
+(pdftex.def)             Requested size: 345.0pt x 140.0043pt.
+[10 <./inmap2.png>]
+<code.png, id=146, 479.29062pt x 294.09875pt>
+File: code.png Graphic file (type png)
+<use code.png>
+Package pdftex.def Info: code.png  used on input line 441.
+(pdftex.def)             Requested size: 345.0pt x 211.69708pt.
+<renewables.png, id=147, 767.86874pt x 293.59688pt>
+File: renewables.png Graphic file (type png)
+<use renewables.png>
+Package pdftex.def Info: renewables.png  used on input line 460.
+(pdftex.def)             Requested size: 345.0pt x 131.91129pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9] [10 <./inmap2.png>] (paper.aux)
+[11 <./code.png>] [12 <./renewables.png>] (paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -529,20 +550,20 @@ L3 programming layer <2024-02-20>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 599E60E202FC9F994C23AFECD8686B15;2108.
+(rerunfilecheck)             Checksum: 92D009D2ADD0FF19072F8A0493F4558B;2333.
  ) 
 Here is how much of TeX's memory you used:
- 20307 strings out of 474435
- 378051 string characters out of 5741933
+ 20333 strings out of 474435
+ 378461 string characters out of 5741933
  1939190 words of memory out of 5000000
- 42276 multiletter control sequences out of 15000+600000
+ 42294 multiletter control sequences out of 15000+600000
  566127 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,11n,93p,490b,504s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\mrdan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/mrdan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on paper.pdf (10 pages, 4723215 bytes).
+Output written on paper.pdf (12 pages, 4820362 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 43 named destinations out of 1000 (max. 500000)
- 121 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 232 PDF objects out of 1000 (max. 8388607)
+ 51 named destinations out of 1000 (max. 500000)
+ 147 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -385,13 +385,80 @@ where
     \item $x'$ is deviations in x.
 \end{itemize}
 
-An example of the output of the algorithm is shown below:
+InMAP does this process for calculating the wind velocity in the advection term of equation (13). InMAP splits each variable
+into three parts:
+
+\begin{equation}
+    v = \overline{x} + \tilde{x} + v', C = \overline{C} + \tilde{C} + C'    
+\end{equation}
+
+where $\tilde{x} \text{ and }  \tilde{C}$ are deviations calculated by WRF-Chem, and $v' \text{ and }  C'$ are other deviations.
+
+Substituting this decomposition into equation (13) yields:
+
+$$
+    \nabla \cdot (vC_i) = \nabla \cdot ((\overline{x} + \tilde{x} + x')(\overline{C_i} + \tilde{C_i} + C_i'))
+$$
+
+$$
+    =  \nabla \cdot (\overline{x}\overline{C_i}) +  \nabla \cdot (\overline{x}\tilde{C_i}) + \nabla \cdot (\overline{x}C_i') 
+    +  \nabla \cdot (\tilde{x}\overline{C_i}) + \nabla \cdot (\tilde{x}\tilde{C_i}) + \nabla \cdot (\tilde{x}C_i')
+    + \nabla \cdot (x'\overline{C_i}) + \nabla \cdot (x'\tilde{C_i}) + \nabla \cdot (x'C_i')
+$$
+
+We now apply the Reynolds averaging rules to remove four of the above terms to yield:
+
+\begin{equation}
+    =  \nabla \cdot (\overline{x}\overline{C_i}) +  \nabla \cdot (\tilde{x}\tilde{C_i}) + \nabla \cdot (\tilde{x}C_i')  + \nabla \cdot (x'\tilde{C_i}) + \nabla \cdot (x'C_i')
+\end{equation}
+
+We now have to discretize the first term of the above equation. InMAP chooses to do that using the following equation:
+
+$$
+\frac{\Delta C_i}{\Delta t} = \begin{cases}
+    \frac{1}{\Delta x}\sum\limits_{j=1}^{n_y} U_iC_{i,j}n_j, & \text{if }U_i \geq 0 \\
+    \frac{1}{\Delta x}\sum\limits_{j=1}^{n_y} U_iC_{i,j}, & \text{if }U_i < 0
+    \end{cases} 
+$$
+
+We now have most of the required information verified to begin running InMAP. To demonstrate further, an example of the output of the algorithm is shown below:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{inmap2.png}
+    \caption{The result of the model when running with $\text{PM}_{2.5}$ as the specified pollutant.}
+    \label{fig:grid2}
+ \end{figure}
+
+\subsection{Configuring InMAP}
+
+InMAP allows the user to have lots of flexibility regarding configuring the model. After downloading the executable,
+the program prompts the user to provide a configuration file. Within this file, there exists many configuration options,
+some of which are shown below:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{code.png}
+    \caption{A few of the configuration options available. The total $\text{PM}_{2.5}$ concentration is composed of multiple
+    sources. The total deaths per ethnicity are also shown.}
+    \label{fig:grid2}
+ \end{figure}
+
+The model can then be executed. The execution time of the model is still quite long, so it is easier to access InMAP via an API.
+
+\section{Results}
+
+To obtain our results, we utilized an API created by the company WattTime. WattTime combines marginal emission rates with InMAP's results
+to produce a figure representing the health damage per MWh. To better understand how marginal emissions rates impact damage to human health caused
+by emissions, consider the states of California and Mississippi. California has a much cleaner grid with a higher access to renewable energy (see below), 
+so if a spike in demand occurs for energy production, it is much easier to compensate that demand with renewable energy. However,
+in Mississippi, only 3 percent of the energy produced is renewable. In addition, the state consumes three times more energy than it produces.
 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{inmap2.png}
-    \caption{The result of the model when running with $\text{PM}_{2.5}$ as the specified pollutant.}
+    \includegraphics[width=\textwidth]{renewables.png}
+    \caption{A snapshot of California's grid makeup according to CAISO, California's Independent Service Operator.}
     \label{fig:grid2}
  \end{figure}
 
