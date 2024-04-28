@@ -210,7 +210,7 @@ $$
 $$
 
 $$
-    \int_0^{L_y} K'_y Y'_m(y)Y_n(y) dy = \eta{mn}
+    \int_0^{L_y} K'_y Y'_m(y)Y_n(y) dy = \eta_{mn}
 $$
 
 This will help simplify our derivation for finding the unknown constant $c_m(x, z)$.
@@ -287,10 +287,112 @@ We can now rewrite equation (11) above as:
 
 \subsection{An interpretation of this result}
 
+This result turned out to be very accurate against experimental data (Buske, 2012). 
+The equation shown above was ran against data from Copenhagen, Denmark, and Kinkaid, Illinois. 
+The difference between the predicted and actual results turned out to be within an appropriate 
+error bound, leading for the authors to conclude that analytical solutions to the advection differential
+equation (ADE) may be possible. The potential for creating an accurate and computationally efficient model
+for modeling air pollution dispersion encouraged more research into new methods of CTMs.
+
 \section{InMAP: A more computationally efficient model for finding emissions}
 
 One of the recent developments in the study of air pollution was the creation of computationally efficient models for computing the harm to human health from
 diffusion. A prevalent model that has been implemented in industry by companies such as WattTime is InMAP \url{(http://spatialmodel.com/)}. 
-InMAP is a model that evaluates pollution by simplifying typical CTMs via using an annual-average basis for its results. 
+InMAP is a model that evaluates pollution by simplifying typical CTMs via using an annual-average basis for its results. InMAP itself
+was based on a revolutionary CTM, WRF-Chem (Grell et al., 2005). 
+
+\subsection{How does WRF-Chem work?}
+
+WRF-Chem is a CTM that is based on the Weather Research and Forecasting Model (WRF). The WRF was initially created by
+researchers in the late 1990s via a collaboration between the National Center for Atmospheric Research (NCAR), 
+the National Oceanic and Atmospheric Administration, and many others. WRF is most useful for its capability to 
+apply a mathematical model via a direct simulation with idealized conditions or use actual atmospheric data.
+It is used at many meterological companies as well as in solar companies, laboratories, and many other locations.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{wrfchem.png}
+    \caption{An example of the graphics produced by WRF Chem.}
+    \label{fig:atmospheric_box_model}
+ \end{figure}
+
+WRF-Chem combines this with the ability to trace $PM_{2.5}$. It is very numerically consistent and its forecasts are 
+stronger than many models beforehand. However, like many other CTMs, WRF-Chem is very computationally expensive. 
+
+\subsection{InMAP's solutions}
+
+To solve many of the computational issues that WRF-Chem had, InMAP makes several key simplifications. InMAP simplifies many of the 
+marginal emissions rates into annual averages, creating an algorithm that can be run much more efficiently. In addition to being more
+computationally efficient, InMAP also creates more spatially detailed results. This efficiency is achieved by using a variable-resolution grid:
+areas with a higher density of people are modeled with a higher spacial detail than regions of lower density. The algorithm is able to be downloaded
+and is programmed using the Go programming language; it is designed to be simple enough for a beginner user to learn. The authors claim that this is a
+novel approach to CTMs.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{inmap.png}
+    \caption{How InMAP splits the US into regions. Note how regions with higher population density are modeled as smaller grid
+    regions, and regions with lower density have larger grid regions}
+    \label{fig:grid}
+ \end{figure}
+
+\subsection{The diffusion equation}
+
+InMAP utilizes a reaction-advection-diffusion equation to find its air pollution concentrations:
+
+\begin{equation}
+    \frac{\partial C_i}{\partial t} = \underbrace{\nabla \cdot (D\nabla C_i)}_{\text{Diffusion Term}} - \underbrace{\nabla \cdot (\vec{v}C_i)}_{\text{Advection Term}} + \underbrace{\sum_{j=1}^{n} R_{ij}}_{\text{Reaction Terms}} + \underbrace{E_i}_{\text{Source/Sink Term}} - \underbrace{d_i}_{\text{Decay Term}}
+\end{equation}
+    
+where 
+
+\begin{itemize}
+    \item $C_i$ is the concentration of one of $n$ model pollutant species.
+    \item $D$ is a molecular diffusion coefficient (neglected here as a negligible source of chemical transport in the atmosphere compared to advection).
+    \item $\vec{v}$ is the wind vector.
+    \item $R_{ij}$ is the net formation rate of species $i$ from species $j$.
+    \item $E_i$ is pollutant emission.
+    \item $d_i$ is pollutant removal via wet and dry deposition.
+\end{itemize}
+
+InMAP solves this equation for the concentrations of $\text{PM}_{2.5}$ and many other harmful chemicals emitted. To find the concentrations,
+InMAP runs in each grid region at a discrete step interval. During each step, the following are performed: 
+
+\begin{enumerate}
+    \item InMAP finds the flux that comes from new emissions. This is done using the plume model, as referenced before. 
+    \item The algorithm then calculates how changes in pollutant concentrations are affected by physical and chemical processes including advection, turbulent mixing, etc.
+    \item Each process listed above uses a snapshot of the concentration before the time step had occurred to avoid combining changes to concentrations at the same time. 
+  \end{enumerate} 
+
+\subsection{How InMAP takes in data}
+
+InMAP first takes in the data and runs it through a preprocessor that is an extension of WRF-Chem. This reduces the complexity of the operations
+that need to be ran after. Since the CTM is computationally expensive to run, the input data time step is once per WRF-Chem simulation hour. 
+After this, the InMAP algorithm runs stepwise, adjusting the relevant terms of the equation as needed. One of the more interesting features is the 
+methodology of updating the advection wind vectors. The wind speed updates at too fast of a rate for any computer to calculate using discrete steps.
+To solve this problem, Reynolds decomposition is used: this is a mathematical technique that uses the expected value
+of a wind stream and its deviations to calculate an accurate result. For example, if a variable $x$ is decomposed, it would be 
+represented as the following equation: 
+
+\begin{equation}
+    x = \overline{x} + x'
+\end{equation}
+
+where
+
+\begin{itemize}
+    \item $\overline{x}$ is the expected value of $x$
+    \item $x'$ is deviations in x.
+\end{itemize}
+
+An example of the output of the algorithm is shown below:
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{inmap2.png}
+    \caption{The result of the model when running with $\text{PM}_{2.5}$ as the specified pollutant.}
+    \label{fig:grid2}
+ \end{figure}
 
 \end{document}
